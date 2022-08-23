@@ -10,6 +10,9 @@ PROD_IOC += $(PROD_NAME)
 DBD += $(PROD_NAME).dbd
 $(PROD_NAME)_DBD += PICamSupport.dbd
 
+$(PROD_NAME)_LDFLAGS_Linux += -L/opt/pleora/ebus_sdk/x86_64/lib/genicam/bin/Linux64_x64 -Wl,-rpath,/opt/pleora/ebus_sdk/x86_64/lib/genicam/bin/Linux64_x64
+$(PROD_NAME)_LDFLAGS_Linux += -L/opt/pleora/ebus_sdk/x86_64/lib -Wl,-rpath,/opt/pleora/ebus_sdk/x86_64/lib
+
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 $(PROD_NAME)_SRCS += $(PROD_NAME)_registerRecordDeviceDriver.cpp $(PROD_NAME)Main.cpp
 
@@ -17,7 +20,7 @@ $(PROD_NAME)_SRCS += $(PROD_NAME)_registerRecordDeviceDriver.cpp $(PROD_NAME)Mai
 $(PROD_NAME)_LIBS += ADPICam
 $(PROD_NAME)_LIBS_WIN32 += Picam
 
-$(PROD_NAME)_SYS_LIBS_Linux += picam pida pidi picc piac PvBase GenApi_gcc40_v2_4 GCBase_gcc40_v2_4 EbTransportLayerLib EbUtilsLib PtConvertersLib PtUtilsLib PvAppUtils PvBuffer PvDevice PvGenICam PvPersistence PvSerial PvStream PvTransmitter PvVirtualDevice SimpleImagingLib log4cpp_gcc40_v2_4 MathParser_gcc40_v2_4 Log_gcc40_v2_4
+$(PROD_NAME)_SYS_LIBS_Linux += picam pida pidi picc piac
 
 include $(ADCORE)/ADApp/commonDriverMakefile
 
