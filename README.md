@@ -24,13 +24,21 @@ PI-MAX3 & 4 cameras.
 
 ### Building on Linux
 
+ADPICam has been built on RHEL 8 and CentOS 7, and tested with a PI-MTE3 detector on RHEL 8.
+
 Before building ADPICam on linux, you must first install the PICam SDK from Princeton Instruments ([available via a support request on their site](https://www.princetoninstruments.com/contact-software/)):
 
 ```
-bash Picam_SDK-v5.12.2.run
+sudo bash Picam_SDK-v5.12.2.run
 ```
 
-Then, enter `PICamSupport/os/linux-x86_64`, and run `fetch-picam-libs.sh`. This should copy libraries from `/opt` into this directory. Note that you may need to run as root/adjust permissions. From there, you can build with 
+This should install libraries into `/opt/pleora` and `/opt/PrincetonInstrumnets`, along with some links in `/usr/local/lib`. To build ADPICam you will need to add read permissions to these locations to the specified user, or build and run as root. Additionally, make sure that /usr/local/lib is in your system library search path:
+
+```
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+```
+
+From there, you can build with
 
 ```
 make
