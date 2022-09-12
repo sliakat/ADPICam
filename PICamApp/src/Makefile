@@ -7,7 +7,8 @@ ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
 USR_CPPFLAGS += -D__X64
 endif
 
-LIBRARY_IOC = ADPICam
+LIBRARY_IOC_Linux = ADPICam
+LIBRARY_IOC_WIN32 = ADPICam
 LIB_SRCS += ADPICam.cpp
 LIB_LIBS_WIN32 += Picam
 
