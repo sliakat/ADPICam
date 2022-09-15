@@ -957,6 +957,7 @@ asynStatus ADPICam::initializeDetector() {
     sprintf(picamVersion, "%d.%d.%d.%d", versionMajor, versionMinor,
             versionDistribution, versionReleased);
     status |= setStringParam(PICAM_VersionNumber, (const char *) picamVersion);
+    status |= setStringParam(ADSDKVersion, (const char*) picamVersion);
     if (status) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
                 "%s:%s: unable to set camera parameters\n", driverName,
@@ -3969,6 +3970,7 @@ asynStatus ADPICam::piSetSelectedCamera(asynUser *pasynUser,
         asynPrint(pasynUser, ASYN_TRACE_FLOW,
                 "%s:%s: Selected camera value=%d, %s\n", driverName,
                 functionName, selectedIndex, modelString);
+        status |= setStringParam(ADModel, modelString);
         Picam_DestroyString(modelString);
 
         Picam_GetEnumerationString(PicamEnumeratedType_ComputerInterface,
@@ -3983,6 +3985,8 @@ asynStatus ADPICam::piSetSelectedCamera(asynUser *pasynUser,
                 availableCameraIDs[selectedIndex].sensor_name);
         status |= setStringParam(PICAM_SerialNumber,
                 availableCameraIDs[selectedIndex].serial_number);
+        status |= setStringParam(ADSerialNumber,
+                availableCameraIDs[selectedIndex].serial_number);
 
         Picam_GetFirmwareDetails(&(availableCameraIDs[selectedIndex]),
                 &firmwareDetails, &numFirmwareDetails);
@@ -3995,6 +3999,7 @@ asynStatus ADPICam::piSetSelectedCamera(asynUser *pasynUser,
 
             Picam_DestroyFirmwareDetails(firmwareDetails);
             status |= setStringParam(PICAM_FirmwareRevision, firmwareString);
+            status |= setStringParam(ADFirmwareVersion, firmwareString);
         } else {
             status |= setStringParam(PICAM_FirmwareRevision, "N/A");
         }
