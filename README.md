@@ -45,5 +45,5 @@ make
 ```
 
 Additional information:
-* [Documentation](https://cars.uchicago.edu/software/epics/PICamDoc.html).
+* [Documentation](https://areaDetector.github.io/areaDetector/ADPICam/PICamDoc.html).
 * [Release notes and links to source and binary releases](RELEASE.md).
