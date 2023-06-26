@@ -100,24 +100,11 @@ newPos
 objType "controls"
 endObjectProperties
 
-# (Group)
-object activeGroupClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 5
-y 53
-w 350
-h 340
-
-beginGroup
-
 # (Embedded Window)
 object activePipClass
 beginObjectProperties
 major 4
-minor 1
+minor 0
 release 0
 x 5
 y 53
@@ -137,30 +124,11 @@ displayFileName {
 noScroll
 endObjectProperties
 
-endGroup
-
-visMin "A"
-visMax "1"
-endObjectProperties
-
-# (Group)
-object activeGroupClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 5
-y 398
-w 350
-h 80
-
-beginGroup
-
 # (Embedded Window)
 object activePipClass
 beginObjectProperties
 major 4
-minor 1
+minor 0
 release 0
 x 5
 y 398
@@ -180,30 +148,11 @@ displayFileName {
 noScroll
 endObjectProperties
 
-endGroup
-
-visMin "A"
-visMax "1"
-endObjectProperties
-
-# (Group)
-object activeGroupClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 360
-y 53
-w 350
-h 250
-
-beginGroup
-
 # (Embedded Window)
 object activePipClass
 beginObjectProperties
 major 4
-minor 1
+minor 0
 release 0
 x 360
 y 53
@@ -221,12 +170,6 @@ displayFileName {
   0 "PICAM_ShutterParams.edl"
 }
 noScroll
-endObjectProperties
-
-endGroup
-
-visMin "A"
-visMax "1"
 endObjectProperties
 
 # (Rectangle)
@@ -839,7 +782,7 @@ release 0
 x 715
 y 379
 w 350
-h 135
+h 160
 
 beginGroup
 
@@ -852,7 +795,7 @@ release 0
 x 715
 y 379
 w 350
-h 135
+h 160
 fgColor rgb 0 0 0
 bgColor rgb 65280 65280 65280
 topShadowColor rgb 65280 65280 65280
@@ -1170,7 +1113,7 @@ major 4
 minor 0
 release 0
 x 744
-y 519
+y 544
 w 300
 h 27
 fgColor rgb 0 0 0
@@ -1183,30 +1126,30 @@ buttonLabel "PICAM Specific Parameters"
 numPvs 22
 numDsps 11
 displayFileName {
-  0 PICAM_ParameterRelevance.edl
-  1 PICam_AcquisitionParams.edl
-  2 PICam_SensorInformation.edl
-  3 PICam_SensorLayout.edl
-  4 PICam_SensorCleaning.edl
-  5 PICam_SensorTemperature.edl
-  6 PICam_HardwareIO.edl
-  7 PICAM_ShutterParams.edl
-  8 PICAM_ReadoutParams.edl
-  9 PICAM_AdcParams.edl
-  10 PICAM.edl
+  0 "PICAM_ParameterRelevance.edl"
+  1 "PICam_AcquisitionParams.edl"
+  2 "PICam_SensorInformation.edl"
+  3 "PICam_SensorLayout.edl"
+  4 "PICam_SensorCleaning.edl"
+  5 "PICam_SensorTemperature.edl"
+  6 "PICam_HardwareIO.edl"
+  7 "PICAM_ShutterParams.edl"
+  8 "PICAM_ReadoutParams.edl"
+  9 "PICAM_AdcParams.edl"
+  10 "PICAM.edl"
 }
 menuLabel {
-  0 ParameterRelevance
-  1 Data Acquisition
-  2 Sensor Information
-  3 Sensor Layout
-  4 Sensor Cleaning
-  5 Sensor Temperature
-  6 Hardware I/O
-  7 Shutter
-  8 Readout Parameters
-  9 ADC Parameters
-  10 Available Detectors
+  0 "ParameterRelevance"
+  1 "Data Acquisition"
+  2 "Sensor Information"
+  3 "Sensor Layout"
+  4 "Sensor Cleaning"
+  5 "Sensor Temperature"
+  6 "Hardware I/O"
+  7 "Shutter"
+  8 "Readout Parameters"
+  9 "ADC Parameters"
+  10 "Available Detectors"
 }
 symbols {
   0 "P=$(P),R=$(R)"

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2023-06-26 08:22:11 by epics-->
 <display version="2.0.0">
   <name>PICAMBase</name>
   <x>409</x>
@@ -588,7 +589,7 @@
     <x>715</x>
     <y>379</y>
     <width>350</width>
-    <height>135</height>
+    <height>160</height>
   </widget>
   <widget type="action_button" version="3.0.0">
     <name>related display #132</name>
@@ -651,7 +652,7 @@
     </actions>
     <text>PICAM Specific Parameters</text>
     <x>744</x>
-    <y>519</y>
+    <y>544</y>
     <width>300</width>
     <height>27</height>
     <background_color>
