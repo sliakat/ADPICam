@@ -2,7 +2,7 @@ errlogInit(20000)
 
 < envPaths
 #epicsThreadSleep(20)
-dbLoadDatabase("$(TOP)/dbd/PICamApp.dbd")
+dbLoadDatabase("/home/towa/EPICS/support/areaDetector/ADPICam/iocs/PICamIOC/dbd/PICamApp.dbd")
 PICamApp_registerRecordDeviceDriver(pdbbase) 
 
 epicsEnvSet("PREFIX", "13PICAM1:")
@@ -12,6 +12,8 @@ epicsEnvSet("XSIZE",  "2048")
 epicsEnvSet("YSIZE",  "2048")
 epicsEnvSet("NCHANS", "2048")
 # The search path for database files
+epicsEnvSet("ADCORE", "/home/towa/EPICS/support/areaDetector/ADCore")
+epicsEnvSet("ADPICAM","/home/towa/EPICS/support/areaDetector/ADPICam")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 # Create a PICam driver
@@ -29,7 +31,11 @@ asynSetTraceIOMask($(PORT), 0, 2)
 dbLoadRecords("$(ADCORE)/db/ADBase.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 dbLoadRecords("$(ADPICAM)/db/PICam.template","P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
-# Create a standard arrays plugin, set it to get data from Driver.
+# Create a standard arrays plugin, set it to get dae_path not found.
+#asynSetTraceMask($(PORT),0,0x09)
+iocInit()
+Starting iocInit
+ta from Driver.
 NDStdArraysConfigure("Image1", 3, 0, "$(PORT)", 0)
 dbLoadRecords("$(ADCORE)/db/NDPluginBase.template","P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=0")
 dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,TYPE=Int16,SIZE=16,FTVL=SHORT,NELEMENTS=20000000")
