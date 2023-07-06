@@ -35,10 +35,9 @@ To downgrade:
   - uninstall libusb with ```apt remove libusb-1.0-0```
   - may also need to remove dev and doc packages if those are installed
   - download 1.0.23's deb package from here: ```https://ubuntu.pkgs.org/20.04/ubuntu-main-amd64/libusb-1.0-0_1.0.23-2build1_amd64.deb.html```
-  - install with ```apt install ./<package name>```
- ```
-apt-cache policy libusb-1.0* should now show 2:1.0.23-2build1 is now installed
-```
+  - install with ```apt install ./libusb-1.0-0_1.0.23-2build1_amd64.deb```
+
+```apt-cache policy libusb-1.0*``` should now show 2:1.0.23-2build1 is now installed
   
 to keep libusb downgraded, mark libusb-1.0-0 for hold on apt -- that will allow you to upgrade everything else while freezing libusb:
 ```
