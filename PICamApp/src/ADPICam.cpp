@@ -167,66 +167,52 @@ ADPICam::ADPICam(const char *portName, int maxBuffers, size_t maxMemory,
 
     ADPICam_Instance = this;
 
-    //Open First available camera.  If no camera is available,
-    // then open a demo camera
-    error = Picam_OpenFirstCamera(&currentCameraHandle);
-
-    if (error != PicamError_None) {
-        if (error == PicamError_NoCamerasAvailable) {
-            error = Picam_ConnectDemoCamera(PicamModel_Quadro4320,
-                    "CamNotFoundOnInit", &demoId);
-            if (error != PicamError_None) {
-            	Picam_GetEnumerationString(PicamEnumeratedType_Error,
-            			error,
-						&errorString);
-            	const char *demoModelName;
-            	Picam_GetEnumerationString(PicamEnumeratedType_Model,
-            			PicamModel_Quadro4320,
-						&demoModelName);
-            	asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-            			"-------------------------------------------------\n"
-            			"No detectors were available and cannot connect to "
-            			"demo camera %s. Cannot run without a detector.   \n"
-            			"Error=%s \n"
-            			"-------------------------------------------------\n",
-						demoModelName,
-						errorString);
-            	Picam_DestroyString(demoModelName);
-            	Picam_DestroyString(errorString);
-            	return;
-            }
-            error = Picam_OpenFirstCamera(&currentCameraHandle);
-            if (error != PicamError_None) {
-            	Picam_GetEnumerationString(PicamEnumeratedType_Error,
-            			error,
-						&errorString);
-            	const char *demoModelName;
-            	Picam_GetEnumerationString(PicamEnumeratedType_Model,
-            			PicamModel_Quadro4320,
-						&demoModelName);
-            	asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                        "------------------------------------------------\n"
-            			"Trouble opening demo camera %s \n%s"
-		                "------------------------------------------------\n",
-						demoModelName, errorString);
-            	Picam_DestroyString(demoModelName);
-            	Picam_DestroyString(errorString);
-            	return;
-            }
-        } else {
-            Picam_GetEnumerationString(PicamEnumeratedType_Error, error,
-                    &errorString);
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "------------------------------------------------\n"
-                    "%s:%s Unhandled Error opening first camera: %s\n"
-	                "------------------------------------------------\n",
-					driverName,
-                    functionName,
-					errorString);
-            Picam_DestroyString(errorString);
-            return;
+    /*
+    Connect a SOPHIA 2048BX virtual camera to load -- if no physical camera
+    is plugged in when Available Cameras are generated, the virtual camera
+    gets used.
+    */
+        PicamModel demoToConnect = PicamModel_Sophia2048BExcelon;
+        error = Picam_ConnectDemoCamera(demoToConnect,
+                "CamNotFoundOnInit", &demoId);
+        if (error != PicamError_None) {
+        Picam_GetEnumerationString(PicamEnumeratedType_Error,
+                        error,
+                                        &errorString);
+        const char *demoModelName;
+        Picam_GetEnumerationString(PicamEnumeratedType_Model,
+                        demoToConnect,
+                                        &demoModelName);
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "-------------------------------------------------\n"
+                        "Cannot connect to demo camera %s."
+                        "Cannot run without a detector.\n"
+                        "Error=%s \n"
+                        "-------------------------------------------------\n",
+                                        demoModelName,
+                                        errorString);
+        Picam_DestroyString(demoModelName);
+        Picam_DestroyString(errorString);
+        return;
         }
-    }
+        error = Picam_OpenCamera(&demoId, &currentCameraHandle);
+        if (error != PicamError_None) {
+        Picam_GetEnumerationString(PicamEnumeratedType_Error,
+                        error,
+                                        &errorString);
+        const char *demoModelName;
+        Picam_GetEnumerationString(PicamEnumeratedType_Model,
+                        demoToConnect,
+                                        &demoModelName);
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "------------------------------------------------\n"
+                        "Trouble opening demo camera %s \n%s"
+                        "------------------------------------------------\n",
+                                        demoModelName, errorString);
+        Picam_DestroyString(demoModelName);
+        Picam_DestroyString(errorString);
+        return;
+        }
     PicamAdvanced_GetCameraDevice(currentCameraHandle, &currentDeviceHandle);
     selectedCameraIndex = 0;
     createParam(PICAM_VersionNumberString, asynParamOctet,
@@ -1716,6 +1702,9 @@ asynStatus ADPICam::piAcquireStart(){
     switch(pixelFormat){
     case PicamPixelFormat_Monochrome16Bit:
         imageDataType = NDUInt16;
+        break;
+    case PicamPixelFormat_Monochrome32Bit:
+        imageDataType = NDUInt32;
         break;
     default:
         imageDataType = NDUInt16;
