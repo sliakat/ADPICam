@@ -30,17 +30,20 @@ It has also been built on Ubuntu 22.04LTS (kernel 5.19.0-46-generic), with PICam
 /Ubuntu 22.04 LTS specific notes
 For proper operation of USB and USB3 detectors with Ubuntu 22.04LTS, libusb needs to be downgraded to 1.0.23
 To downgrade:
-  - check installed version with apt-cache policy libusb-1.0*
+  - check installed version with ```apt-cache policy libusb-1.0*```
   - LTS22.04 should have 2:1.0.25-1ubuntu2 by default
-  - uninstall libusb with apt remove libusb-1.0-0
+  - uninstall libusb with ```apt remove libusb-1.0-0```
   - may also need to remove dev and doc packages if those are installed
-  - download 1.0.23's deb package from here: https://ubuntu.pkgs.org/20.04/ubuntu-main-amd64/libusb-1.0-0_1.0.23-2build1_amd64.deb.html
-  - install with apt install ./<package name>
- 
+  - download 1.0.23's deb package from here: ```https://ubuntu.pkgs.org/20.04/ubuntu-main-amd64/libusb-1.0-0_1.0.23-2build1_amd64.deb.html```
+  - install with ```apt install ./<package name>```
+ ```
 apt-cache policy libusb-1.0* should now show 2:1.0.23-2build1 is now installed
+```
   
 to keep libusb downgraded, mark libusb-1.0-0 for hold on apt -- that will allow you to upgrade everything else while freezing libusb:
+```
   sudo apt-mark hold libusb-1.0-0
+```
 \Ubuntu 22.04 LTS specific notes
 **
 
