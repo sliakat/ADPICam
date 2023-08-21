@@ -22,3 +22,6 @@ libEb*
 libG*
 lib*gcc*
 libp*
+iocs/PICamIOC/iocBoot/iocPICam/test-18bit.tif
+iocs/PICamIOC/iocBoot/iocPICam/*.tif
+
