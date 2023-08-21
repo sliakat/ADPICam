@@ -3435,7 +3435,6 @@ asynStatus ADPICam::piSetParameterValuesFromSelectedCamera() {
 				switch (paramType) {
 				case PicamValueType_Integer:
 					piint intVal;
-                                        PicamError error;
                                         if (canRead)
                                         {
                                                 error = Picam_ReadParameterIntegerValue(
@@ -3572,7 +3571,6 @@ asynStatus ADPICam::piSetParameterValuesFromSelectedCamera() {
 					break;
 				case PicamValueType_FloatingPoint:
 					piflt fltVal;
-                                        PicamError error;
                                         if (canRead)
                                         {
                                                 error = Picam_ReadParameterFloatingPointValue(
