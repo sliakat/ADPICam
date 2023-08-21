@@ -3266,16 +3266,16 @@ asynStatus ADPICam::piRegisterValueChangeWatch(PicamHandle cameraHandle) {
 			case PicamValueType_Integer:
 			case PicamValueType_Boolean:
 			case PicamValueType_Enumeration:
-				error = PicamAdvanced_RegisterForIntegerValueChanged(cameraHandle,
+                                error = PicamAdvanced_RegisterForIntegerValueChanged(cameraHandle,
 						parameterList[ii], piParameterIntegerValueChanged);
-				break;
+                                				break;
 			case PicamValueType_LargeInteger:
 				error = PicamAdvanced_RegisterForLargeIntegerValueChanged(
 						cameraHandle, parameterList[ii],
 						piParameterLargeIntegerValueChanged);
 				break;
 			case PicamValueType_FloatingPoint:
-				error = PicamAdvanced_RegisterForFloatingPointValueChanged(
+                                        error = PicamAdvanced_RegisterForFloatingPointValueChanged(
 						cameraHandle, parameterList[ii],
 						piParameterFloatingPointValueChanged);
 				break;
@@ -3394,6 +3394,9 @@ asynStatus ADPICam::piSetParameterValuesFromSelectedCamera() {
         		parameterList[ii],
 				&doesParamExist);
         if (doesParamExist) {
+                pibln canRead;
+                Picam_CanReadParameter(currentCameraHandle,
+                        parameterList[ii], &canRead);
 			if (driverParam >= 0) {
 				error = Picam_GetParameterValueType(currentCameraHandle,
 						parameterList[ii], &paramType);
@@ -3432,8 +3435,18 @@ asynStatus ADPICam::piSetParameterValuesFromSelectedCamera() {
 				switch (paramType) {
 				case PicamValueType_Integer:
 					piint intVal;
-					error = Picam_GetParameterIntegerValue(currentCameraHandle,
-							parameterList[ii], &intVal);
+                                        PicamError error;
+                                        if (canRead)
+                                        {
+                                                error = Picam_ReadParameterIntegerValue(
+                                                        currentCameraHandle, parameterList[ii], &intVal);
+                                        }
+                                        else
+                                        {
+                                                error = Picam_GetParameterIntegerValue(
+                                                        currentCameraHandle, parameterList[ii], &intVal);
+
+                                        }
 					if (error != PicamError_None) {
 						Picam_GetEnumerationString(PicamEnumeratedType_Error,
 								error,
@@ -3559,9 +3572,19 @@ asynStatus ADPICam::piSetParameterValuesFromSelectedCamera() {
 					break;
 				case PicamValueType_FloatingPoint:
 					piflt fltVal;
-					//const PicamCollectionConstraint *speedConstraint;
-					error = Picam_GetParameterFloatingPointValue(
-								currentCameraHandle, parameterList[ii], &fltVal);
+                                        PicamError error;
+                                        if (canRead)
+                                        {
+                                                error = Picam_ReadParameterFloatingPointValue(
+                                                        currentCameraHandle, parameterList[ii], &fltVal);
+                                        }
+                                        else
+                                        {
+                                                error = Picam_GetParameterFloatingPointValue(
+                                                        currentCameraHandle, parameterList[ii], &fltVal);
+
+                                        }
+					
                     if (error != PicamError_None) {
                         Picam_GetEnumerationString(PicamEnumeratedType_Error,
                                 error,
@@ -4220,7 +4243,7 @@ asynStatus ADPICam::piUnregisterValueChangeWatch(PicamHandle cameraHandle) {
 			case PicamValueType_Integer:
 			case PicamValueType_Boolean:
 			case PicamValueType_Enumeration:
-				error = PicamAdvanced_UnregisterForIntegerValueChanged(cameraHandle,
+                                error = PicamAdvanced_UnregisterForIntegerValueChanged(cameraHandle,
 						parameterList[ii], piParameterIntegerValueChanged);
 				break;
 			case PicamValueType_LargeInteger:
@@ -4229,7 +4252,7 @@ asynStatus ADPICam::piUnregisterValueChangeWatch(PicamHandle cameraHandle) {
 						piParameterLargeIntegerValueChanged);
 				break;
 			case PicamValueType_FloatingPoint:
-				error = PicamAdvanced_UnregisterForFloatingPointValueChanged(
+                                error = PicamAdvanced_UnregisterForFloatingPointValueChanged(
 						cameraHandle, parameterList[ii],
 						piParameterFloatingPointValueChanged);
 				break;
