@@ -6,6 +6,7 @@ dbLoadDatabase("$(TOP)/dbd/PICamApp.dbd")
 PICamApp_registerRecordDeviceDriver(pdbbase) 
 
 epicsEnvSet("PREFIX", "13PICAM1:")
+epicsEnvSet("RP", "cam1:")
 epicsEnvSet("PORT",   "PICAMDET1")
 epicsEnvSet("QSIZE",  "20")
 epicsEnvSet("XSIZE",  "2048")
@@ -44,3 +45,5 @@ iocInit()
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
 
+dbpf $(PREFIX)$(RP)AdcBitDepth 16
+dbpf $(PREFIX)$(RP)PixelFormat 1
