@@ -168,11 +168,11 @@ ADPICam::ADPICam(const char *portName, int maxBuffers, size_t maxMemory,
     ADPICam_Instance = this;
 
     /*
-    Connect a SOPHIA 2048BX virtual camera to load -- if no physical camera
+    Connect a SOPHIA 4096B-HDR (231-84) virtual camera to load -- if no physical camera
     is plugged in when Available Cameras are generated, the virtual camera
     gets used.
     */
-        PicamModel demoToConnect = PicamModel_Sophia2048BExcelon;
+        PicamModel demoToConnect = PicamModel_Sophia4096BHdr_2;
         error = Picam_ConnectDemoCamera(demoToConnect,
                 "CamNotFoundOnInit", &demoId);
         if (error != PicamError_None) {
