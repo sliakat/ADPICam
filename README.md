@@ -16,7 +16,7 @@ This driver is based on the PICAM Virtual Camera Library. It runs on 64 bit Wind
 * ProEM-HS, ProEM, ProEM+
 * PyLoN, PyLoN-IR
 * Quad-RO (not supported in the Linux SDK)
-* SOPHIA
+* SOPHIA (including 18-bit 4k)
 
 This detector has been tested with Pixis, ProEM-HS, Blaze, SOPHIA, PI-MET3, and Quad-RO cameras. Virutal demo models have also been tested. Most notably missing from the library so far are the Pulse and Modulation Parameters used mostly in the 
 PI-MAX3 & 4 cameras.     
@@ -25,9 +25,9 @@ PI-MAX3 & 4 cameras.
 
 ADPICam has been built on RHEL 8 and CentOS 7, and tested with a PI-MTE3 detector on RHEL 8.
 
-It has also been built on Ubuntu 22.04LTS (kernel 5.19.0-46-generic), with PICam SDK version 5.13.3.2211 and tested with Pixis, ProEM-HS, Blaze, and SOPHIA cameras.
+It has also been built on Ubuntu 22.04LTS (kernel 6.5.0-27-generic), with PICam SDK version 5.14.7.2311 and tested with Pixis, ProEM-HS, Blaze, and SOPHIA cameras.
 **
-/Ubuntu 22.04 LTS specific notes
+### Ubuntu 22.04 LTS specific notes
 For proper operation of USB and USB3 detectors with Ubuntu 22.04LTS, libusb needs to be downgraded to 1.0.23
 To downgrade:
   - check installed version with ```apt-cache policy libusb-1.0*```
@@ -43,7 +43,6 @@ to keep libusb downgraded, mark libusb-1.0-0 for hold on apt -- that will allow 
 ```
   sudo apt-mark hold libusb-1.0-0
 ```
-\Ubuntu 22.04 LTS specific notes
 **
 
 Before building ADPICam on linux, you must first install the PICam SDK from Princeton Instruments (https://cdn.princetoninstruments.com/picam/picam_sdk.run):
