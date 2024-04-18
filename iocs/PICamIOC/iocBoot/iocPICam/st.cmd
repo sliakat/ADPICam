@@ -44,6 +44,3 @@ iocInit()
 
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
-
-dbpf $(PREFIX)$(RP)AdcBitDepth 16
-dbpf $(PREFIX)$(RP)PixelFormat 1
