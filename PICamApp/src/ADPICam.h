@@ -170,6 +170,7 @@ protected:
     int PICAM_EnableSyncMaster;
     int PICAM_InvertOutputSignal;
     int PICAM_OutputSignal;
+    int PICAM_OutputSignal2;
     int PICAM_SyncMaster2Delay;
     int PICAM_TriggerCoupling;
     int PICAM_TriggerDetermination;
@@ -314,6 +315,7 @@ protected:
     int PICAM_EnableSyncMasterExists;
     int PICAM_InvertOutputSignalExists;
     int PICAM_OutputSignalExists;
+    int PICAM_OutputSignal2Exists;
     int PICAM_SyncMaster2DelayExists;
     int PICAM_TriggerCouplingExists;
     int PICAM_TriggerDeterminationExists;
@@ -444,6 +446,7 @@ protected:
     int PICAM_EnableSyncMasterRelevant;
     int PICAM_InvertOutputSignalRelevant;
     int PICAM_OutputSignalRelevant;
+    int PICAM_OutputSignal2Relevant;
     int PICAM_SyncMaster2DelayRelevant;
     int PICAM_TriggerCouplingRelevant;
     int PICAM_TriggerDeterminationRelevant;
@@ -690,6 +693,7 @@ private:
 #define PICAM_EnableSyncMasterString                   "PICAM_ENABLE_SYNC_MASTER"
 #define PICAM_InvertOutputSignalString                 "PICAM_INVERT_OUTPUT_SIGNAL"
 #define PICAM_OutputSignalString                       "PICAM_OUTPUT_SIGNAL"
+#define PICAM_OutputSignal2String                      "PICAM_OUTPUT_SIGNAL_2"
 #define PICAM_SyncMaster2DelayString                   "PICAM_SYNC_MASTER2_DELAY"
 #define PICAM_TriggerCouplingString                    "PICAM_TRIGGER_COUPLING"
 #define PICAM_TriggerDeterminationString               "PICAM_TRIGGER_DETERMINATION"
