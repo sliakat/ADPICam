@@ -445,6 +445,14 @@ record(bi, "$(P)$(R)OutputSignal_EX")
     field(SCAN, "I/O Intr")
 }
 
+record(bi, "$(P)$(R)OutputSignal2_EX")
+{
+    field(DESC, "")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL_2_EX")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+}
+
 record(bi, "$(P)$(R)SyncMaster2Delay_EX")
 {
     field(DESC, "")
@@ -1449,6 +1457,14 @@ record(bi, "$(P)$(R)OutputSignal_PR")
 {
     field(DESC, "")
     field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL_PR")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)$(R)OutputSignal2_PR")
+{
+    field(DESC, "")
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL_2_PR")
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
 }
@@ -2520,9 +2536,23 @@ record(mbbo, "$(P)$(R)OutputSignal")
     field(OUT, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL")
 }
 
+record(mbbo, "$(P)$(R)OutputSignal2")
+{
+    field(PINI, "YES")
+    field(DTYP, "asynInt32")
+    field(OUT, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL_2")
+}
+
 record(mbbi, "$(P)$(R)OutputSignal_RBV")
 {
     field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL")
+    field(DTYP, "asynInt32")
+    field(SCAN, "I/O Intr")
+}
+
+record(mbbi, "$(P)$(R)OutputSignal2_RBV")
+{
+    field(INP, "@asyn($(PORT),$(ADDR),$(TIMEOUT))PICAM_OUTPUT_SIGNAL_2")
     field(DTYP, "asynInt32")
     field(SCAN, "I/O Intr")
 }
