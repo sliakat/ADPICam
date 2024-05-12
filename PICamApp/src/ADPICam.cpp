@@ -444,6 +444,9 @@ ADPICam::ADPICam(const char *portName, int maxBuffers, size_t maxMemory,
     piCreateAndIndexPIParam(PICAM_OutputSignalString, asynParamInt32,
             PICAM_OutputSignal, PICAM_OutputSignalExists,
             PICAM_OutputSignalRelevant, PicamParameter_OutputSignal);
+    piCreateAndIndexPIParam(PICAM_OutputSignal2String, asynParamInt32,
+            PICAM_OutputSignal2, PICAM_OutputSignal2Exists,
+            PICAM_OutputSignal2Relevant, PicamParameter_OutputSignal2);
     piCreateAndIndexPIParam(PICAM_SyncMaster2DelayString, asynParamFloat64,
             PICAM_SyncMaster2Delay, PICAM_SyncMaster2DelayExists,
             PICAM_SyncMaster2DelayRelevant, PicamParameter_SyncMaster2Delay);
